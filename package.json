@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.4",
+    "node-sass": "^4.5.3",
+    "uglify-js": "^3.0.15"
+  },
+  "scripts": {
+    "lint": "node_modules/jscs/bin/jscs src --fix && node_modules/jshint/bin/jshint src",
+    "scss": "node_modules/node-sass/bin/node-sass -r --source-map true --output-style compressed -o dist style/main.scss",
+    "scss:dev": "node_modules/node-sass/bin/node-sass -r --source-map true --output-style expanded -o dist style/main.scss",
+    "js": "node_modules/uglify-js/bin/uglifyjs -o dist/main.js  `find src -name '*.js'`",
+    "js:dev": "paste -z `find src -name '*.js'` > dist/main.js",
+    "build": "npm run lint && npm run scss && npm run js",
+    "build:dev": "npm run lint && npm run scss:dev && npm run js:dev"
+  }
+}
